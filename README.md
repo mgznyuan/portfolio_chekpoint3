@@ -1,2 +1,1 @@
-# portfolio_chekpoint3
-SI 539 Portfolio Checkpoint  3
+Meixin Yuan's Personal Website
