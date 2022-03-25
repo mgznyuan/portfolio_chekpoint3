@@ -1,23 +1,53 @@
 /*Add padding and margin to space out the page.
+	Add background images
 Make the font larger too.*/
 body {
 	margin: 5%;
 	padding: 5%;
 	font-size: 120%;
 	color: #43414D;
-	background-color:white;
 	font-family: Calibri, Helvetica, sans-serif;
-	
+	background: white url(../images/bg_road.png) no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+#homepage {
+	background: white url(../images/bg_city.png) no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+
+#home_grid {
+	display: grid;
+	grid-template-columns: 1fr 2fr;
+	grid-template-rows: 1fr 5fr;
+}
+
+#about {
+	grid-column: 2;
 }
 
 #small_h1 {
 	color: #D16800;
+	font-family: 'Quattrocento Sans', Helvetica, sans-serif;
+	font-weight: normal;
 	font-size: 1.5em;
 }
+
+
 /*Make the h1 heading bigger with a bold font*/
 main {
-	min-height: 1000px;
 	vertical-align: top;
+	min-height: 800px;
+}
+h1, h2, h3 {
+	font-family: 'Quattrocento Sans', Helvetica, sans-serif;
 }
 h1 {
 	color: #2C5F73;
@@ -40,41 +70,69 @@ a{
 
 /*Style the images*/
 img {
+	width: 450px;
 	height: auto;
-	display: block;
-	padding: 25px;
-	display: block;
-	margin:20px auto 20px auto;
+	padding: 0;
+	margin: auto;
 	vertical-align: top;
+	border: orange solid 1px;
+	border-radius: 10px;
 }
 
 	img:hover {
 		filter: drop-shadow(0 0 0.75rem #2C5F73);
-		width: 80%;
 	}
 
 #profile {
-	width: 40%;
+	width: 80%;
 	filter: drop-shadow(3px 3px 0 #F28907) drop-shadow(-3px -3px 0 #F28907);
+	align-self: start;
+	justify-self:start;
+	border:0;
+}
+	#profile:hover {
+		filter: drop-shadow(0 0 0.75rem #2C5F73);
+		border: 0;
+	}
+
+.prof_img {
+	display: grid;
+	grid-template-rows: repeat(4, 1fr);
+	grid-template-columns: repeat(2, 1fr);
 }
 
+img.proj_img:hover{
+	width:600px;
+}
+	.gallery {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		gap: 20px;
+	}
+
+img.blog_img {
+	width: 90%;
+	margin: auto;
+}
+img.blog_img:hover{
+	width: 100%;
+	margin: auto;
+}
 /*Style texts*/
 
 h2 {
 	font-size: 1.5em;
 	font-weight: bold;
-	font-family: Calibri, Helvetica, sans-serif;
 }
 
 h3 {
 	font-size: 1em;
 	font-weight: bold;
-	font-family: Calibri, Helvetica, sans-serif;
 }
 /* spacing for paragraphs, headings*/
 p, h1, h2, h3{
 	padding: 10px;
-	font-family: Calibri, Helvetica, sans-serif;
 }
 
 header, main, h1, footer {
@@ -107,6 +165,7 @@ nav {
 items in the nav section*/
 	nav li {
 		margin: 10px;
+		padding:10px;
 		display: inline;
 		width: 10%;
 		font-family: Calibri, Helvetica, sans-serif;
@@ -130,6 +189,25 @@ a:hover {
 	background-color: hsla(38, 100%, 50%, 0.3);
 }
 
+a.skip {
+	background: white;
+	left: 0;
+	padding: 6px;
+	position: absolute;
+	top: -40px;
+	-webkit-transition: top 1s ease-out;
+	transition: top 1s ease-out;
+	z-index: 1;
+}
+
+	a.skip:focus {
+		top: 20px;
+		color: black;
+		text-decoration-style: solid;
+	}
+  
+
+
 #award {
 	font-weight: bold;
 	color: #D16800;
@@ -151,21 +229,26 @@ footer {
 	font-size: 80%;
 }
 
-.gallery {
-	display: flex; 
-	flex-decoration:row;
-	flex-wrap: wrap;
-	gap:0.5vw;
-	flex-basis: 33vw;
-	background: grey;
-}
+/** Code for motion **/
+@keyframes profile_animate {
 
-.gallery img {
-	display:flex;
-
-}
-
-	img:hover {
-		filter: drop-shadow(0 0 0.75rem #2C5F73);
-
+	0% {
+		opacity: 0;
 	}
+	100% {
+		opacity: 1;
+	}
+}
+
+#profile, #name {
+	animation: profile_animate 3s;
+}
+
+/** Code for prefers reduced motion **/
+
+@media screen and (prefers-reduced-motion: reduce) {
+	/*Turn off logo motion*/
+	#profile, #name {
+		animation: none;
+	}
+}
